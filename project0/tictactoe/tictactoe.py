@@ -103,11 +103,11 @@ def minimax(board):
     """
     Returns the optimal action for the current player on the board.
     """
-    action, value = action_value(board)
+    action, value = minimax_with_value(board)
     return action
 
 
-def action_value(board):
+def minimax_with_value(board):
     if terminal(board):
         return None, utility(board)
     next_player = player(board)
@@ -116,19 +116,17 @@ def action_value(board):
     if len(all_actions) == 1:
         remaining_action = all_actions.pop()
         return remaining_action, utility(result(board, remaining_action))
-    if len(all_actions) == 0:
-        raise Exception("Should not happen")
     for action in all_actions:
         new_board = result(board, action)
         if winner(new_board) == next_player:
             return action, utility(new_board)
         new_boards[action] = new_board
-    next_actions = [(action, action_value(new_board)[1])
+    next_actions = [(action, minimax_with_value(new_board)[1])
                     for (action, new_board) in new_boards.items()]
-    next_values = [a_v_1[1] for a_v_1 in next_actions]
+    next_values = [next_action[1] for next_action in next_actions]
     if next_player == X:
         goal_value = max(next_values)
     else:
         goal_value = min(next_values)
-    outcomes = [a_v_2[0] for a_v_2 in next_actions if a_v_2[1] == goal_value]
+    outcomes = [next_action[0] for next_action in next_actions if next_action[1] == goal_value]
     return outcomes[0], goal_value
