@@ -1,0 +1,1 @@
+docker run --name test --rm --mount type=bind,source="/c/Users/TamásTaska/work/learn/cs50/ai/projects/project0/tictactoe/tictactoe.py",target=/app/tictactoe.py test
