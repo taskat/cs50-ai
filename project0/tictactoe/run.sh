@@ -1,1 +1,3 @@
-docker run --name test --rm --mount type=bind,source="/c/Users/TamásTaska/work/learn/cs50/ai/projects/project0/tictactoe/tictactoe.py",target=/app/tictactoe.py test
+#!/bin/bash
+PWD = $(pwd)
+docker run --name cs-ai --rm --mount type=bind,source="$PWD/tictactoe.py",target=/app/tictactoe.py -it --env-file env cs-ai
