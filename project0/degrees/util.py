@@ -4,12 +4,6 @@ class Node():
         self.parent = parent
         self.action = action
 
-    def path(self, current):
-        if self.parent is None:
-            return current
-        current.insert(0, (self.action, self.state))
-        return self.parent.path(current)
-
 
 class StackFrontier():
     def __init__(self):

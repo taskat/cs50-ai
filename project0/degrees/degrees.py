@@ -98,7 +98,7 @@ def shortest_path(source, target):
     while not queue.empty():
         current_node = queue.remove()
         if current_node.state == target:
-            return current_node.path([])
+            return path(current_node, [])
         checked.add(current_node.state)
         neighbors = neighbors_for_person(current_node.state)
         for neighbor in neighbors:
@@ -109,6 +109,16 @@ def shortest_path(source, target):
             queue.add(new_node)
 
     return None
+
+
+def path(node, current):
+    """
+    Returns the list from the root to the given node.
+    """
+    if node.parent is None:
+        return current
+    current.insert(0, (node.action, node.state))
+    return path(node.parent, current)
 
 
 def person_id_for_name(name):

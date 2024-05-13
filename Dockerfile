@@ -1,9 +1,9 @@
-FROM python:3.12.2
+FROM python:3.11
 
 # Set the working directory in the container
 WORKDIR /app
 
-COPY . .
+COPY ./check.sh /app/check.sh
 
 RUN pip install check50
 RUN pip install style50
