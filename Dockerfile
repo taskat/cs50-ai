@@ -5,6 +5,8 @@ WORKDIR /app
 
 COPY ./check.sh /app/check.sh
 
+COPY ./requirements.txt /app/requirements.txt
+
 RUN pip install check50
 RUN pip install style50
 RUN pip install submit50
